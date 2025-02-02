@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="description"
-        content="This is to do list implemented using Django by Dennis Ivy who is a full stack web developer.">
+        content="This is todo list implemented using Django templating system">
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>To Do Items</title>
@@ -16,9 +16,9 @@
 
     <style>
         body {
-            background-color: #FAFAFA;
+            background-color:rgb(78, 172, 216);
             font-family: 'Nunito', sans-serif;
-            padding-top: 50px;
+            padding-top: 100px;
         }
 
         h1,
@@ -33,7 +33,7 @@
 
         a,
         p {
-            color: #4b5156
+            color:rgb(219, 231, 241)
         }
 
         a {
@@ -57,13 +57,13 @@
             display: flex;
             justify-content: space-between;
             color: #fff;
-            padding: 10px;
+            padding: 15px;
             border-radius: 5px 5px 0 0;
-            background: linear-gradient(90deg, #EEA390 0%, #EB796F 43%, #EB796F 100%);
+            background: linear-gradient(90deg,rgb(184, 57, 25) 0%,rgb(143, 82, 76) 43%,rgb(145, 44, 35) 100%);
         }
 
         .header-bar a {
-            color: rgb(247, 247, 247);
+            color: rgb(109, 79, 79);
             text-decoration: none;
         }
 
@@ -90,13 +90,13 @@
         .task-complete-icon {
             height: 20px;
             width: 20px;
-            background-color: rgb(105, 192, 105);
+            background-color: rgb(27, 73, 27);
             border-radius: 50%;
         }
 
         .task-incomplete-icon {
-            height: 20px;
-            width: 20px;
+            height: 40px;
+            width: 40px;
             background-color: rgb(218, 218, 218);
             border-radius: 50%;
         }
@@ -105,7 +105,7 @@
             text-decoration: none;
             font-weight: 900;
             color: #cf4949;
-            font-size: 22px;
+            font-size: 40px;
             line-height: 0;
             padding: 20px 0px;
         }

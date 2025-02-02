@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
@@ -11,9 +11,7 @@ from django.contrib.auth import login
 
 # Imports for Reordering Feature
 from django.views import View
-from django.shortcuts import redirect
 from django.db import transaction
-
 from .models import Task
 from .forms import PositionForm
 
