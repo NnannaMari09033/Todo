@@ -3,12 +3,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="description"
-        content="This is to do list implemented using Django by Dennis Ivy who is a full stack web developer.">
-
+    <meta name="description" content="This is todo list implemented using Django templating system">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>To Do Items</title>
-    <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -16,24 +13,22 @@
 
     <style>
         body {
-            background-color: #FAFAFA;
+            background-color: rgb(50, 58, 59);
             font-family: 'Nunito', sans-serif;
-            padding-top: 50px;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6,
-            {
+        h1, h2, h3, h4, h5, h6 {
             font-family: 'Raleway', sans-serif;
         }
 
-        a,
-        p {
-            color: #4b5156
+        a, p {
+            color: rgb(219, 231, 241);
         }
 
         a {
@@ -41,11 +36,12 @@
         }
 
         .container {
-            max-width: 550px;
-            margin: auto;
+            width: 100%; /* Full width */
+            height: 100vh; /* Full height */
             background-color: #fff;
-            -webkit-box-shadow: 2px 2px 13px -4px rgba(0, 0, 0, 0.21);
-            box-shadow: 2px 2px 13px -4px rgba(0, 0, 0, 0.21);
+            -webkit-box-shadow: 10px 10px 26px -2px rgba(0, 0, 0, 0.21);
+            box-shadow: 10px 10px 26px -2px rgba(0, 0, 0, 0.21);
+            overflow: auto;
         }
 
         input {
@@ -57,13 +53,13 @@
             display: flex;
             justify-content: space-between;
             color: #fff;
-            padding: 10px;
+            padding: 15px;
             border-radius: 5px 5px 0 0;
-            background: linear-gradient(90deg, #EEA390 0%, #EB796F 43%, #EB796F 100%);
+            background: linear-gradient(90deg, rgb(184, 57, 25) 0%, rgb(143, 82, 76) 43%, rgb(145, 44, 35) 100%);
         }
 
         .header-bar a {
-            color: rgb(247, 247, 247);
+            color: rgb(109, 79, 79);
             text-decoration: none;
         }
 
@@ -78,7 +74,7 @@
 
         .task-title {
             display: flex;
-            padding: 20px;
+            padding: 30px;
         }
 
         .task-title a {
@@ -90,13 +86,13 @@
         .task-complete-icon {
             height: 20px;
             width: 20px;
-            background-color: rgb(105, 192, 105);
+            background-color: rgb(27, 73, 27);
             border-radius: 50%;
         }
 
         .task-incomplete-icon {
-            height: 20px;
-            width: 20px;
+            height: 40px;
+            width: 40px;
             background-color: rgb(218, 218, 218);
             border-radius: 50%;
         }
@@ -105,12 +101,10 @@
             text-decoration: none;
             font-weight: 900;
             color: #cf4949;
-            font-size: 22px;
+            font-size: 40px;
             line-height: 0;
             padding: 20px 0px;
         }
-
-        /*Handle Classes*/
 
         .handle {
             display: inline-block;
@@ -119,15 +113,12 @@
             user-select: none;
         }
 
-        .handle:after,
-        .handle:before {
+        .handle:after, .handle:before {
             display: block;
             content: "";
         }
 
-        .handle:active,
-        .handle:active:before,
-        .handle:active:after {
+        .handle:active, .handle:active:before, .handle:active:after {
             cursor: grabbing;
         }
 
@@ -140,7 +131,6 @@
         .selectedTask {
             opacity: 0.6;
         }
-
 
         #add-link {
             color: #EB796F;
@@ -156,15 +146,18 @@
             padding: 20px;
         }
 
-        @media screen and (max-width:320px) {
+        @media screen and (max-width: 800px) {
             #search-add-wrapper {
                 padding: 10px;
             }
+
+            .container {
+                width: 100%; /* Full width on small screens */
+                height: 100vh; /* Full height on small screens */
+            }
         }
 
-        input[type=text],
-        input[type=password],
-        textarea {
+        input[type=text], input[type=password], textarea {
             border: 1px solid #757575;
             border-radius: 5px;
             padding: 10px;
@@ -199,12 +192,9 @@
 </head>
 
 <body>
-
     <div class="container">
         {% block content %} {% endblock content %}
     </div>
-
 </body>
-
 
 </html>

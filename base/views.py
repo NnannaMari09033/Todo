@@ -1,32 +1,52 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect, render
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.urls import reverse_lazy
-
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
-
-# Imports for Reordering Feature
+from django.contrib import messages
 from django.views import View
-from django.shortcuts import redirect
 from django.db import transaction
-
+from django.contrib.auth import logout
 from .models import Task
 from .forms import PositionForm
-
-
+from django import forms
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import authenticate
+# Custom Login View using Django's built-in LoginView
 class CustomLoginView(LoginView):
     template_name = 'base/login.html'
     fields = '__all__'
     redirect_authenticated_user = True
 
     def get_success_url(self):
-        return reverse_lazy('tasks')
+        return reverse_lazy('tasks')  # Ensure 'tasks' is the correct URL name for your TaskList view
 
 
+class CustomLoginForm(AuthenticationForm):
+    username = forms.CharField(max_length=254, widget=forms.TextInput(attrs={'autofocus': True}))
+    password = forms.CharField(label="Password", widget=forms.PasswordInput)
+
+    def clean(self):
+        username = self.cleaned_data.get('username')
+        password = self.cleaned_data.get('password')
+
+        if username and password:
+            user = authenticate(username=username, password=password)
+            if user is None:
+                raise forms.ValidationError("Invalid username or password.")
+        return self.cleaned_data
+# Custom Logout View using Django's built-in LogoutView
+class CustomLogoutView(View):
+    def get(self, request):
+        logout(request)
+        return redirect(reverse_lazy('register')) # Redirect to the login page after logout
+
+
+# Registration view using the built-in UserCreationForm
 class RegisterPage(FormView):
     template_name = 'base/register.html'
     form_class = UserCreationForm
@@ -45,6 +65,7 @@ class RegisterPage(FormView):
         return super(RegisterPage, self).get(*args, **kwargs)
 
 
+# Task list view: displays tasks for the logged-in user.
 class TaskList(LoginRequiredMixin, ListView):
     model = Task
     context_object_name = 'tasks'
@@ -56,20 +77,20 @@ class TaskList(LoginRequiredMixin, ListView):
 
         search_input = self.request.GET.get('search-area') or ''
         if search_input:
-            context['tasks'] = context['tasks'].filter(
-                title__contains=search_input)
-
+            context['tasks'] = context['tasks'].filter(title__contains=search_input)
         context['search_input'] = search_input
 
         return context
 
 
+# Task detail view.
 class TaskDetail(LoginRequiredMixin, DetailView):
     model = Task
     context_object_name = 'task'
     template_name = 'base/task.html'
 
 
+# Task create view.
 class TaskCreate(LoginRequiredMixin, CreateView):
     model = Task
     fields = ['title', 'description', 'complete']
@@ -80,28 +101,30 @@ class TaskCreate(LoginRequiredMixin, CreateView):
         return super(TaskCreate, self).form_valid(form)
 
 
+# Task update view.
 class TaskUpdate(LoginRequiredMixin, UpdateView):
     model = Task
     fields = ['title', 'description', 'complete']
     success_url = reverse_lazy('tasks')
 
 
-class DeleteView(LoginRequiredMixin, DeleteView):
+# Task delete view.
+class TaskDelete(LoginRequiredMixin, DeleteView):
     model = Task
     context_object_name = 'task'
     success_url = reverse_lazy('tasks')
+
     def get_queryset(self):
         owner = self.request.user
         return self.model.objects.filter(user=owner)
 
+
+# Task reorder view.
 class TaskReorder(View):
     def post(self, request):
         form = PositionForm(request.POST)
-
         if form.is_valid():
             positionList = form.cleaned_data["position"].split(',')
-
             with transaction.atomic():
                 self.request.user.set_task_order(positionList)
-
         return redirect(reverse_lazy('tasks'))
