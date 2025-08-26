@@ -1,4 +1,6 @@
 from django.contrib import admin
-from .models import Task
+from .models import Todo, Project, Tag
 
-admin.site.register(Task)
+admin.site.register(Todo)
+admin.site.register(Project)
+admin.site.register(Tag)
