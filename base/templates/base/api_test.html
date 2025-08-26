@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Test Page</title>
+</head>
+<body>
+    <h1>API Test Page</h1>
+    <a href="/admin/login/">Login as admin to test API</a>
+
+    <h2>Todos</h2>
+    <ul id="todos"></ul>
+
+    <h2>Projects</h2>
+    <ul id="projects"></ul>
+
+    <h2>Tags</h2>
+    <ul id="tags"></ul>
+
+    <script>
+        function fetchData(url, elementId) {
+            fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                const list = document.getElementById(elementId);
+                list.innerHTML = '';
+                data.forEach(item => {
+                    const li = document.createElement('li');
+                    li.textContent = item.name || item.title;
+                    list.appendChild(li);
+                });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                const list = document.getElementById(elementId);
+                list.innerHTML = '<li>Error loading data. Are you logged in?</li>';
+            });
+        }
+
+        fetchData('/api/todos/', 'todos');
+        fetchData('/api/projects/', 'projects');
+        fetchData('/api/tags/', 'tags');
+    </script>
+</body>
+</html>
