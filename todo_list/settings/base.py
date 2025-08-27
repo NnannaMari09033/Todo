@@ -20,6 +20,10 @@ SECRET_KEY = env('SECRET_KEY')
 
 ALLOWED_HOSTS = []
 
+ui-fixes-and-refactor
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+master
 # Application definition
 
 INSTALLED_APPS = [
