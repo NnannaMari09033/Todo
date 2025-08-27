@@ -163,7 +163,6 @@ class TagViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
- ui-fixes-and-refactor
 class ApiTestView(TemplateView):
     template_name = 'base/api_test.html'
- master
+ 
