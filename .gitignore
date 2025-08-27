@@ -158,3 +158,4 @@ myenv
 .env/myenv/
 myenv/
 replacements.txt
+myenv/
