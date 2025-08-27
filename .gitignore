@@ -155,4 +155,4 @@ Thumbs.db #thumbnail cache on Windows
 myenv/
 myenv
 .env
-.env/
+.env/myenv/
