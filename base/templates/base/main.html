@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 
+{% load static %}
 <head>
     <meta charset="utf-8">
-<<<<<<< HEAD
     <meta name="description" content="This is todo list implemented using Django templating system">
-=======
     <meta name="description"
         content="This is todo list implemented using Django templating system">
 
->>>>>>> cf302b0cb9ebf8cddc0b7fde5be6d42cc403069e
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>To Do Items</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,9 +16,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap" rel="stylesheet">
 
+
     <style>
         body {
-<<<<<<< HEAD
             background-color: rgb(50, 58, 59);
             font-family: 'Nunito', sans-serif;
             margin: 0;
@@ -28,25 +27,23 @@
             display: flex;
             justify-content: center;
             align-items: center;
-=======
             background-color:rgb(78, 172, 216);
             font-family: 'Nunito', sans-serif;
             padding-top: 100px;
->>>>>>> cf302b0cb9ebf8cddc0b7fde5be6d42cc403069e
+
         }
 
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Raleway', sans-serif;
         }
 
-<<<<<<< HEAD
+
         a, p {
             color: rgb(219, 231, 241);
-=======
         a,
         p {
             color:rgb(219, 231, 241)
->>>>>>> cf302b0cb9ebf8cddc0b7fde5be6d42cc403069e
+
         }
 
         a {
@@ -73,11 +70,11 @@
             color: #fff;
             padding: 15px;
             border-radius: 5px 5px 0 0;
-<<<<<<< HEAD
+
             background: linear-gradient(90deg, rgb(184, 57, 25) 0%, rgb(143, 82, 76) 43%, rgb(145, 44, 35) 100%);
-=======
+
             background: linear-gradient(90deg,rgb(184, 57, 25) 0%,rgb(143, 82, 76) 43%,rgb(145, 44, 35) 100%);
->>>>>>> cf302b0cb9ebf8cddc0b7fde5be6d42cc403069e
+ 
         }
 
         .header-bar a {
@@ -211,6 +208,10 @@
             padding: 20px;
         }
     </style>
+=======
+    <link rel="stylesheet" type="text/css" href="{% static 'base/style.css' %}">
+
+>>>>>>> 88ef00368f521b2a2cd5daa7f91e87e045d6392a
 </head>
 
 <body>
