@@ -156,3 +156,4 @@ myenv/
 myenv
 .env
 .env/myenv/
+myenv/
