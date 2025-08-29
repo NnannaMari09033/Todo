@@ -150,3 +150,10 @@ Thumbs.db #thumbnail cache on Windows
 
 # profiling data
 .prof
+myenv/
+myenv
+.env
+.env/myenv/
+myenv/
+replacements.txt
+myenv/
