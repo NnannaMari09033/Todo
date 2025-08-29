@@ -163,6 +163,9 @@ class TagViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
+
 class ApiTestView(TemplateView):
     template_name = 'base/api_test.html'
  
+class ApiTestView(TemplateView):
+    template_name = 'base/api_test.html'

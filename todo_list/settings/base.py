@@ -20,6 +20,8 @@ SECRET_KEY = env('SECRET_KEY')
 
 ALLOWED_HOSTS = []
 
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
