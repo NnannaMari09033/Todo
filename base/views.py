@@ -36,3 +36,4 @@ class TagViewSet(viewsets.ModelViewSet):
 
 class ApiTestView(TemplateView):
     template_name = 'base/api_test.html'
+    template_name = 'base/api_test.html'
